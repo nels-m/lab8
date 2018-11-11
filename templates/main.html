@@ -1,0 +1,17 @@
+<!doctype html>
+<html>
+	<head>
+		<title>{% block title %}{% endblock %}</title>
+		<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+	</head>
+
+	<body>
+		<div class="topnav">
+ 			<a class="active" href="{{ url_for('index') }}">Home</a>
+ 			<a href="#contact">Contact</a>
+ 			<a href="#about">About</a>
+		</div>
+		{% block content %}{% endblock %}
+		<footer><p class="footer">	© Copyright 2018 by <a href="#">Nelson Murray</a>.</p></footer>
+	</body>
+</html>
