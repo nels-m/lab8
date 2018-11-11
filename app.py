@@ -4,8 +4,7 @@ MyApp = Flask(__name__)
 
 @MyApp.route('/')
 def landing():
-	return '<h1>This is a landing page for COSC419 Lab8</h1>'
+	return '<h1>This is a landing page for COSC419 Lab8. Here is more.</h1>'
 
 if __name__ == "__main__":
         MyApp.run()
-
