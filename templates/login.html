@@ -1,0 +1,20 @@
+{% extends 'main.html' %}
+{% import 'bootstrab/wtf.html %'}
+{% block title %}
+	Login
+{% endblock %}
+
+{% block content %}
+  <div class="form_container">
+
+    <form class="form-login" method="POST" action="/login">
+      <h2 class="form-login-title">Please sign in</h2>
+      {{ form.hidden_tag() }}
+      {{ wtf.form_field(form.username) }}
+      {{ wtf.form_field(form.password) }}
+      {{ wtf.form_field(form.remember) }}
+      <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+    </form>
+
+  </div>
+{% endblock %}
