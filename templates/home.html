@@ -1,0 +1,20 @@
+{% extends 'main.html' %}
+
+{% block title %}
+        Homepage
+{% endblock %}
+
+{% block content %}
+<div class="topnav">
+        <a class="active" href="{{ url_for('home') }}">Home</a>
+        <a href="#">Gallery</a>
+	<a href="#">Chat</a>
+	<a href="#">Game</a>
+	<a href="#">About</a>
+	<a href="#">Contact</a>	
+        <a href="{{ url_for('logout') }}">Logout</a>
+</div>
+        <h1>Welcome, {{ name }}</h1>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque vel consectetur tortor. Donec commodo nisl enim, vel auctor ligula volutpat eget. Sed et malesuada velit. Phasellus magna libero, elementum vitae pulvinar vel, aliquam eget nunc. Cras maximus et eros non placerat. Nam sit amet felis neque. Fusce ipsum felis, venenatis at quam tempor, sagittis sagittis nisi. Quisque pretium ullamcorper vehicula. Vestibulum non iaculis mi, nec laoreet nisi. Aliquam in convallis neque. Nulla orci ligula, mattis a laoreet sed, tincidunt ac mi. Sed volutpat, nibh a vestibulum consectetur, lectus orci sagittis odio, vitae sodales nunc metus in enim. Curabitur eget placerat nisl. Quisque aliquet porta ullamcorper. Suspendisse sapien risus, porta vitae libero sed, laoreet pellentesque diam. Curabitur sit amet molestie felis.</p>
+{% endblock %}
+
