@@ -60,12 +60,12 @@ def login():
 @MyApp.route('/signup', methods=['GET', 'POST'])
 def signup():
 	form = RegisterForm()
-	
 	if form.validate_on_submit():
 		hashed_password = generate_password_hash(form.password.data, method='sha256')
         	new_user = User(username=form.username.data, email=form.email.data, password=hashed_password)
 		db.session.add(new_user)
 		db.session.commit()
+		flash('An account has been successuflly created for ' + form.username.data)
 		return redirect(url_for('login'))
 
 	return render_template('signup.html', form=form)
@@ -74,6 +74,11 @@ def signup():
 @login_required
 def home():
 	return render_template('home.html', name=current_user.username)
+
+@MyApp.route('/about')
+@login_required
+def about():
+	return render_template('about.html', name=current_user.username)
 
 @MyApp.route('/logout')
 @login_required
