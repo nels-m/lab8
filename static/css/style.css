@@ -1,27 +1,75 @@
 body {
-    margin: 0
+    margin: 0;
+    padding-top: 50px;
 }
 
-.topnav {
-    background-color: #333;
-    overflow: hidden;
+.navbar-fixed-top {
+  border: 0;
 }
 
-.topnav a {
-    float: left;
-    color: #f2f2f2;
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
     text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-    font-size: 17px;
 }
 
-.topnav a:hover {
-    background-color: #ddd;
-    color: black;
+.text_content {
+  padding: 30px 15px;
+  text-align: center;
 }
 
-.topnav a.active {
-    background-color: #4CAF50;
-    color: white;
+.text_home {
+  padding: 20px;	
 }
+
+.form-signup {
+  max-width: 330px;
+  padding: 15px;
+  margin: 0 auto;
+}
+
+.form-signup .form-signup-title,
+.form-signup .checkbox {
+  margin-bottom: 20px;
+}
+
+.form-signup-title {
+  text-align: center;
+}
+
+.form-signup .checkbox {
+  font-weight: normal;
+}
+
+.form-signup .form-control {
+  position: relative;
+  height: auto;
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 10px;
+  font-size: 16px;
+}
+
+.form-signup .form-control:focus {
+  z-index: 2;
+}
+
+.form-signup input[type="email"] {
+  margin-bottom: -1px;
+}
+
+.form-signup input[type="password"] {
+  margin-bottom: 10px;
+}
+
+.form-signup label[for=email],
+.form-signup label[for=username],
+.form-signup label[for=password],
+.form-signup label[for=confirm] {
+  display: none;
+}
+
+
+
