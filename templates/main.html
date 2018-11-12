@@ -8,8 +8,8 @@
 	<body>
 		<div class="topnav">
  			<a class="active" href="{{ url_for('index') }}">Home</a>
- 			<a href="#contact">Contact</a>
- 			<a href="#about">About</a>
+ 			<a href="{{ url_for('login') }}">Login</a>
+			<a href="{{ url_for('signup') }}">Sign Up</a>
 		</div>
 		{% block content %}{% endblock %}
 		<footer><p class="footer">	© Copyright 2018 by <a href="#">Nelson Murray</a>.</p></footer>
