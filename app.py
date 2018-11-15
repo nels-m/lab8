@@ -1,4 +1,4 @@
-from flask import Flask, render_template, Markup, request, url_for, redirect, flash
+from flask import Flask, render_template, Markup, request, url_for, redirect, flash, session
 from flask_bootstrap import Bootstrap
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, BooleanField
@@ -49,8 +49,10 @@ def login():
 		user = User.query.filter_by(username=form.username.data).first()
 		if user:
 			if check_password_hash(user.password, form.password.data):
+				
+				#session['username'] = form.username.data
+				
 				login_user(user, remember=form.remember.data)
-				flash('You have been successfully logged in')
 				return redirect(url_for('home'))
 
 		error = 'Invalid username or password'
@@ -60,29 +62,48 @@ def login():
 @MyApp.route('/signup', methods=['GET', 'POST'])
 def signup():
 	form = RegisterForm()
+	error = None
 	if form.validate_on_submit():
-		hashed_password = generate_password_hash(form.password.data, method='sha256')
-        	new_user = User(username=form.username.data, email=form.email.data, password=hashed_password)
-		db.session.add(new_user)
-		db.session.commit()
-		flash('An account has been successuflly created for ' + form.username.data)
-		return redirect(url_for('login'))
+		user = User.query.filter_by(username=form.username.data).first()
+		email = User.query.filter_by(email=form.email.data).first()
+		if user is None and email is None:
+			hashed_password = generate_password_hash(form.password.data, method='sha256')
+        		new_user = User(username=form.username.data, email=form.email.data, password=hashed_password)
+			db.session.add(new_user)
+			db.session.commit()
+			flash('An account has been successuflly created for ' + form.username.data)
+			return redirect(url_for('login'))
+		error = 'Username or email is already in use'
 
-	return render_template('signup.html', form=form)
+	return render_template('signup.html', form=form, error=error)
 
 @MyApp.route('/home')
 @login_required
 def home():
+	#if 'username' in session:
+
 	return render_template('home.html', name=current_user.username)
+
+	#else:
+
+	#return redirect(url_for('login'))	
 
 @MyApp.route('/about')
 @login_required
 def about():
+	#if 'username' in session:
+
 	return render_template('about.html', name=current_user.username)
+
+        #else:
+
+        #return redirect(url_for('login'))
 
 @MyApp.route('/logout')
 @login_required
 def logout():
+	#session.pop('username', None)
+	
 	logout_user()
 	return redirect(url_for('index'))
 

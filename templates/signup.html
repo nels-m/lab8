@@ -14,6 +14,9 @@
 
     <form class="form-signup" method="POST" action="/signup">
       <h2 class="form-signup-title">Sign Up</h2>
+      {% if error %}
+        <p class=error style="color:red">{{ error }}
+      {% endif %}
       {{ form.hidden_tag() }}
       {{ wtf.form_field(form.username) }}
       {{ wtf.form_field(form.email) }}

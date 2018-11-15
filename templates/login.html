@@ -17,6 +17,13 @@
       {% if error %}
         <p class=error style="color:red">{{ error }}
       {% endif %}
+      {% with messages = get_flashed_messages() %}
+        {% if messages %}
+          {% for message in messages %}
+            <div class="alert alert-warning alert-dismissible" role="alert">{{ message}} </div>
+          {% endfor %}
+        {% endif %}
+      {% endwith%}
       {{ form.hidden_tag() }}
       {{ wtf.form_field(form.username) }}
       {{ wtf.form_field(form.password) }}
