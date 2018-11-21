@@ -1,8 +1,15 @@
+html, body {
+    height:100%;
+}
+
 body {
     margin: 0;
     padding-top: 50px;
-    background-image: url('../img/cosc419lab8-1.jpg');
+    background-image: url('../img/lab8_bkgrnd.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
     background-size: cover;
+    //background-attachement: fixed;
 }
 
 .navbar-fixed-top {
@@ -14,6 +21,7 @@ footer {
     bottom: 0;
     width: 100%;
     text-align: center;
+    color: #FFFFFF;
 }
 
 .text_content {
@@ -40,10 +48,12 @@ footer {
 
 .form-signup-title {
   text-align: center;
+  color: #FFFFFF;
 }
 
 .form-signup .checkbox {
   font-weight: normal;
+  color: #FFFFFF;
 }
 
 .form-signup .form-control {
