@@ -1,6 +1,8 @@
 body {
     margin: 0;
     padding-top: 50px;
+    background-image: url('../img/cosc419lab8-1.jpg');
+    background-size: cover;
 }
 
 .navbar-fixed-top {
@@ -17,10 +19,12 @@ footer {
 .text_content {
   padding: 30px 15px;
   text-align: center;
+  color: #FFFFFF;
 }
 
 .text_home {
-  padding: 20px;	
+  padding: 20px;
+  color: #FFFFFF;	
 }
 
 .form-signup {
@@ -64,10 +68,12 @@ footer {
   margin-bottom: 10px;
 }
 
-.form-signup label[for=email],
-.form-signup label[for=username],
-.form-signup label[for=password],
-.form-signup label[for=confirm] {
+.form-signup label[for=email], 
+.form-signup label[for=username], 
+.form-signup label[for=password], 
+.form-signup label[for=confirm],
+.form-signup label[for=name],
+.form-signup label[for=message] {
   display: none;
 }
 

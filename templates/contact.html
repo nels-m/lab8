@@ -1,0 +1,39 @@
+{% extends 'dashboard.html' %}
+{% import 'bootstrap/wtf.html' as wtf %}
+
+{% block title %}
+        Contact
+{% endblock %}
+
+{% block styles %}
+        {{super()}}
+        <link rel="stylesheet" href="{{url_for('.static', filename='css/style.css')}}">
+{% endblock %}
+
+{% block content %}
+  	<div class="container">
+
+    	<form class="form-signup" method="POST" action="/contact">
+      		<h1 class="form-signup-title">Connect With Me</h1>
+      			{% if error %}
+        			<p class=error style="color:red">{{ error }}
+      			{% endif %}
+			{% with messages = get_flashed_messages() %}
+				{% if messages %}
+					{% for message in messages %}
+						<div class="alert alert-warning alert-dismissible" role="alert">{{ message}} </div>
+					{% endfor %}
+				{% endif %}
+		{% endwith%}
+      		{{ form.hidden_tag() }}
+      		{{ wtf.form_field(form.name) }}
+      		{{ wtf.form_field(form.email) }}
+      		{{ wtf.form_field(form.message) }}
+      		<button class="btn btn-lg btn-primary btn-block" type="submit">Send Message</button>
+    	</form>
+
+	</div>
+
+        {{super()}}
+{% endblock %}
+

@@ -1,11 +1,12 @@
 from flask import Flask, render_template, Markup, request, url_for, redirect, flash, session
 from flask_bootstrap import Bootstrap
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, BooleanField
+from wtforms import StringField, PasswordField, BooleanField, TextAreaField
 from wtforms.validators import InputRequired, Email, Length, EqualTo
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
+#from flask_mail import Message, Mail
 
 MyApp = Flask(__name__)
 MyApp.config['SECRET_KEY'] = 'tistbas123'
@@ -36,6 +37,11 @@ class RegisterForm(FlaskForm):
 	username = StringField('username', validators=[InputRequired(), Length(min=4, max=15)], render_kw={"placeholder": "Username"})
         password = PasswordField('password', validators=[InputRequired(), Length(min=8, max=80), EqualTo('confirm', message='Passwords must match')], render_kw={"placeholder": "Password"})
 	confirm = PasswordField('confirm', render_kw={"placeholder": "Confrim Password"})
+
+class ContactForm(FlaskForm):
+	name = StringField('name', validators=[InputRequired()], render_kw={"placeholder": "Your Name"})
+	email = StringField('email', validators=[InputRequired(), Email(message='Invalid email'), Length(max=50)], render_kw={"placeholder": "Your Email Address"})
+	message = TextAreaField('message', validators=[InputRequired()], render_kw={"placeholder": "Your Message"})
 
 @MyApp.route('/')
 def index():
@@ -81,23 +87,62 @@ def signup():
 @login_required
 def home():
 	#if 'username' in session:
+		#return render_template('home.html', name=session['username'])
+	#else:
+		#flash('Please login to access page')
+		#return redirect(url_for('login'))	
 
 	return render_template('home.html', name=current_user.username)
-
-	#else:
-
-	#return redirect(url_for('login'))	
 
 @MyApp.route('/about')
 @login_required
 def about():
 	#if 'username' in session:
-
+		#return render_template('about.html', name=current_user.username)
+        #else:
+		#flash('Please login to access page')
+        	#return redirect(url_for('login'))
+	
 	return render_template('about.html', name=current_user.username)
 
+@MyApp.route('/contact', methods=['GET', 'POST'])
+@login_required
+def contact():
+	#if 'username' in session:
+		#return render_template('about.html', name=current_user.username)
         #else:
+		#flash('Please login to access page')
+        	#return redirect(url_for('login'))
+	
+	form = ContactForm()
+	if request.method == 'POST':
+		if form.validate_on_submit():	
+			flash('Your message was submitted successfully.')
+			return render_template('contact.html', form=form, name=current_user.username)
+	elif request.method == 'GET':
+		return render_template('contact.html', form=form, name=current_user.username)
 
-        #return redirect(url_for('login'))
+@MyApp.route('/game')
+@login_required
+def game():
+	#if 'username' in session:
+		#return render_template('about.html', name=current_user.username)
+        #else:
+		#flash('Please login to access page')
+        	#return redirect(url_for('login'))
+	
+	return render_template('game.html', name=current_user.username)
+
+@MyApp.route('/imageboard')
+@login_required
+def imageboard():
+	#if 'username' in session:
+		#return render_template('about.html', name=current_user.username)
+        #else:
+		#flash('Please login to access page')
+        	#return redirect(url_for('login'))
+	
+	return render_template('imageboard.html', name=current_user.username)
 
 @MyApp.route('/logout')
 @login_required
