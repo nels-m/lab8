@@ -122,27 +122,31 @@ def contact():
 	elif request.method == 'GET':
 		return render_template('contact.html', form=form, name=current_user.username)
 
-@MyApp.route('/game')
+@MyApp.route('/flaskinfo')
 @login_required
-def game():
+def flaskinfo():
 	#if 'username' in session:
 		#return render_template('about.html', name=current_user.username)
         #else:
 		#flash('Please login to access page')
         	#return redirect(url_for('login'))
 	
-	return render_template('game.html', name=current_user.username)
+	return render_template('flaskinfo.html', name=current_user.username)
 
-@MyApp.route('/imageboard')
+@MyApp.route('/randomvideo')
 @login_required
-def imageboard():
+def randomvideo():
 	#if 'username' in session:
 		#return render_template('about.html', name=current_user.username)
         #else:
 		#flash('Please login to access page')
         	#return redirect(url_for('login'))
 	
-	return render_template('imageboard.html', name=current_user.username)
+	import random
+
+	random = random.randint(1,2600)	
+
+	return render_template('randomvideo.html', name=current_user.username, random=random)
 
 @MyApp.route('/logout')
 @login_required

@@ -1,0 +1,20 @@
+{% extends 'dashboard.html' %}
+
+{% block title %}
+        Random Video
+{% endblock %}
+
+{% block styles %}
+        {{super()}}
+        <link rel="stylesheet" href="{{url_for('.static', filename='css/style.css')}}">
+{% endblock %}
+
+{% block content %}
+        <div class="text_home">
+                <h1>Enjoy a random YouTube video!</h1>
+                <p>These videos are from the "Instant Regret Clicking This Playlist" Playlist</p>
+        </div>
+	<iframe class="video" width="960" height="540" src="http://www.youtube.com/embed/videoseries?list=PLv3TTBr1W_9tppikBxAE_G6qjWdBljBHJ&index={{ random }}" frameborder="0" allowfullscreen></iframe>
+	{{super()}}
+{% endblock %}
+
